@@ -69,7 +69,7 @@ class StoreRequest extends FormRequest
                     ], $this->attributes()),
 
                     // Only one of the following types of special characters is allowed: dots or dashes or underscores
-                    // For example "pass.word.valid" is allowed but "pass.word-invalid" is not
+                    // For example "user.name.valid" is allowed but "user.name-invalid" is not
 
                     Rule::make($this->all('username'), [
                         'username' => ['not_regex:/^.*(((\.).*(_|-))|((_).*(\.|-))|((-).*(\.|_))).*$/'],
@@ -78,7 +78,7 @@ class StoreRequest extends FormRequest
                     ], $this->attributes()),
 
                     // Special characters cannot be repeated multiple times in a row
-                    // For example "password.valid" is allowed but "password..invalid" is not
+                    // For example "username.valid" is allowed but "username..invalid" is not
 
                     Rule::make($this->all('username'), [
                         'username' => ['not_regex:/^.*(\.{2,}|_{2,}|-{2,}).*$/'],
