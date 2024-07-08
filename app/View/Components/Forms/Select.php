@@ -11,9 +11,16 @@ class Select extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $name,
+        public array $options = [],
+        public ?string $label = null,
+        public ?string $id = null,
+        public ?string $value = null
+    )
     {
-        //
+        $this->id = $id ?? str()->random() . "-{$name}";
+        $this->value = old($name) ?? $value;
     }
 
     /**

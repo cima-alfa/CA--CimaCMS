@@ -39,7 +39,7 @@ class Request extends FormRequest
             $this->login,
             ['email']
         );
-
+        
         $this->merge([
             'email' => $user?->email,
             'remember' => (bool) $this->remember

@@ -3,7 +3,7 @@
     <h1 class="title text-2xl">Registration</h1>
 
     <div class="pt-5">
-        <form action="{{ rroute('admin.auth.store') }}" method="post" novalidate>
+        <form action="{{ route('admin.auth.store') }}" method="post" novalidate>
             @csrf
 
             <div class="pb-5">
@@ -57,7 +57,7 @@
     </div>
 
     <div class="pt-5 text-center text-sm sm:text-right">
-        <a href="{{ rroute('admin.auth.login') }}">
+        <a href="{{ route('admin.auth.login') }}">
             <span class="whitespace-nowrap">Already have an account?</span>
             <span class="whitespace-nowrap">Sign in here!</span>
         </a>

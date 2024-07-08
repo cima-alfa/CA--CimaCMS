@@ -111,7 +111,8 @@
         @apply text-red-700 dark:text-red-300;
     }
 
-    .input {
+    .input,
+    .select {
         &[data-error] {
             @apply outline-red-700 dark:outline-red-300;
         }
@@ -128,8 +129,147 @@
             dark:outline-slate-500
             dark:bg-slate-600
             focus:outline-sky-500
+            focus-within:outline-sky-500
             focus:outline-2
+            focus-within:outline-2
             transition-colors;
+    }
+
+    .select {
+        @apply relative
+            p-0
+            overflow-hidden
+            before:absolute
+            before:top-0
+            before:right-0
+            before:h-full
+            before:aspect-square
+            before:bg-slate-400
+            before:pointer-events-none
+            dark:before:bg-slate-500
+            after:absolute
+            after:top-5
+            after:right-5
+            after:w-0
+            after:h-0
+            after:border-[6px]
+            after:border-transparent
+            after:border-t-current
+            after:translate-x-1/2
+            after:-translate-y-[12.5%]
+            after:pointer-events-none
+            after:origin-[center_25%]
+            after:transition-transform
+            after:-rotate-90
+            focus-within:after:rotate-0;
+
+        & > :where(select) {
+            @apply appearance-none
+                w-full
+                bg-transparent
+                px-3
+                py-2
+                pr-[3.25rem]
+                outline-none
+                cursor-pointer;
+
+            & > :where(option) {
+                @apply bg-zinc-50
+                    text-zinc-700;
+            }
+        }
+    }
+
+    .checkbox-wrapper,
+    .switch-wrapper {
+        @apply inline-grid
+            grid-cols-[auto_1fr]
+            items-center
+            gap-x-3
+            gap-y-1
+            cursor-pointer mt-9;
+    }
+
+    .checkbox,
+    .switch {
+        &[data-error] {
+            @apply outline-red-700 dark:outline-red-300;
+        }
+
+        @apply relative 
+            outline
+            outline-1
+            -outline-offset-0
+            outline-slate-400
+            bg-slate-300
+            dark:outline-slate-500
+            dark:bg-slate-600;
+
+        & > :where(input) {
+            @apply appearance-none
+                sr-only;
+        }
+    }
+
+    .checkbox-cross-pseudo {
+        @apply absolute
+            top-1/2
+            left-1/2
+            w-[1rem]
+            h-[0.1875rem]
+            -translate-x-1/2
+            -translate-y-1/2
+            rounded-full
+            bg-green-700
+            dark:bg-green-300
+            opacity-0
+            transition-opacity
+            duration-[45ms]
+            ease-linear;
+    }
+
+    .checkbox {
+        @apply w-[1.125rem] 
+            h-[1.125rem] 
+            rounded;
+
+        & > :where(.checkbox-cross) {
+            @apply absolute
+                top-0
+                left-0
+                w-full
+                h-full
+                before:checkbox-cross-pseudo
+                after:checkbox-cross-pseudo
+                before:rotate-45
+                after:-rotate-45;
+        }
+
+        & > :where(input:checked + .checkbox-cross) {
+            @apply before:opacity-100 after:opacity-100;
+        }
+    }
+
+    .switch {
+        @apply w-10 h-5 rounded-full;
+
+        & > :where(.switch-handle) {
+            @apply absolute
+                top-[0.125rem]
+                left-[0.125rem]
+                w-4
+                h-4
+                bg-red-600
+                dark:bg-red-400
+                rounded-full
+                transition-[background-color,transform];
+        }
+
+        & > :where(input:checked + .switch-handle) {
+            @apply translate-x-[calc(100%_+_4px)]
+                bg-green-700
+                dark:bg-green-300;
+        }
     }
 
     .input-message {
@@ -153,6 +293,7 @@
 			text-zinc-100
 			shadow-md
 			transition-colors
+            cursor-pointer
 			dark:bg-sky-400
 			dark:text-zinc-900
 			dark:hover:bg-sky-300

@@ -13,7 +13,7 @@
     <div id="app" class="layout-grid">
         <header class="layout-header flex items-center justify-between px-5">
             <h1 class="text-2xl">Admin</h1>
-            <form action="{{ rroute('admin.auth.logout') }}" method="post">
+            <form action="{{ route('admin.auth.logout') }}" method="post">
                 @csrf
 
                 <button type="submit">Logout</button>
@@ -24,10 +24,10 @@
             <nav class="primary-navigation">
                 <ul>
                     <li>
-                        <a href="{{ rroute('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ rroute('admin.pages.index') }}" class="nav-link">Pages</a>
+                        <a href="{{ route('admin.pages.index') }}" class="nav-link">Pages</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link">Settings</a>

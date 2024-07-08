@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\CurrentUserData;
-use Illuminate\Support\Facades\Blade;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -22,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Debugbar::getJavascriptRenderer()
+            ->addAssets(['debugbar.css'], [], resource_path('css'));
+
         Password::defaults(function (): Password {
             return app()->isProduction()
                         ? Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()

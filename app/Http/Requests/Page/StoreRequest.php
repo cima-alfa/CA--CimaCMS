@@ -2,16 +2,22 @@
 
 namespace App\Http\Requests\Page;
 
+use App\Components\Forms\CreatePageForm;
 use App\Http\Requests\FormRequest;
 
-class UpdatePageRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
+    public function __construct(CreatePageForm $form)
+    {
+        $this->setForm($form);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

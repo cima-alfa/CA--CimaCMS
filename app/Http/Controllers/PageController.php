@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Page\StorePageRequest;
-use App\Http\Requests\Page\UpdatePageRequest;
+use App\Components\Forms\CreatePageForm;
+use App\Http\Requests\Page\StoreRequest;
+use App\Http\Requests\Page\UpdateRequest;
 use App\Models\Page;
 
 class PageController extends Controller
@@ -19,17 +20,17 @@ class PageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('admin.page.create');
+    public function create(CreatePageForm $createPageForm)
+    {   bdump($createPageForm->get());
+        return view('admin.page.create', ['createPageForm' => $createPageForm]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePageRequest $request)
+    public function store(StoreRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -51,7 +52,7 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePageRequest $request, Page $page)
+    public function update(UpdateRequest $request, Page $page)
     {
         //
     }

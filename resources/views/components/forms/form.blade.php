@@ -1,9 +1,11 @@
-<form action="{{ $action }}" method="{{ $method }}" {{ $attributes }}>
+<form action="{{ $action }}" method="{{ $method }}"
+    @if ($upload) enctype="multipart/form-data" @endif {{ $attributes }}>
+
     @if ($methodSpoof)
         @method($methodSpoof)
     @endif
 
-    @if ($method == 'POST' || $csrf)
+    @if ($csrf || $method == 'POST')
         @csrf
     @endif
 

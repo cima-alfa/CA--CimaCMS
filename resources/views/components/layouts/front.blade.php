@@ -16,9 +16,9 @@
 
             <nav>
                 <ul class="flex justify-end gap-x-3">
-                    <li class="mr-auto"><a href="{{ rroute('pages.show') }}" class="p-2">Home</a></li>
-                    <li><a href="{{ rroute('admin.auth.register') }}" class="p-2">Register</a></li>
-                    <li><a href="{{ rroute('admin.auth.login') }}" class="p-2">Login</a></li>
+                    <li class="mr-auto"><a href="{{ route('pages.show') }}" class="p-2">Home</a></li>
+                    <li><a href="{{ route('admin.auth.register') }}" class="p-2">Register</a></li>
+                    <li><a href="{{ route('admin.auth.login') }}" class="p-2">Login</a></li>
                 </ul>
             </nav>
         </header>

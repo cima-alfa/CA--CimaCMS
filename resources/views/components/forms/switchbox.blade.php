@@ -1,9 +1,9 @@
-<label for="{{ $id }}" class="checkbox-wrapper">
-    <span class="checkbox" @error($name) data-error @enderror>
+<label for="{{ $id }}" class="switch-wrapper">
+    <span class="switch" @error($name) data-error @enderror>
         <input id="{{ $id }}" type="checkbox" name="{{ $name }}"
             @if ($value) value="{{ $value }}" @endif {{ $attributes }}
-            @checked($checked)>
-        <div class="checkbox-cross"></div>
+            @checked(old($name))>
+        <div class="switch-handle"></div>
     </span>
 
     <span class="select-none leading-none">{{ $label }}</span>

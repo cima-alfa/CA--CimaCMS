@@ -2,11 +2,35 @@
 
 namespace App\Http\Requests;
 
+use App\Contracts\Form;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest as FR;
+use Illuminate\Foundation\Http\FormRequest as HttpFormRequest;
 
-class FormRequest extends FR
+abstract class FormRequest extends HttpFormRequest
 {
+    /**
+     * Form definition instance
+     */
+    private ?Form $form = null;
+
+    /**
+     * Set the form definition
+     * 
+     * @param App\Contracts\Form|null $form Form definition instance
+     */
+    protected function setForm(?Form $form): void {
+        $this->form = $form;
+    }
+
+    /**
+     * Get the form definition
+     * 
+     * @return App\Contracts\Form|null Form definition instance
+     */
+    protected function getForm(): ?Form {
+        return $this->form;
+    }
+
     /**
      * Handle a failed validation attempt.
      *
