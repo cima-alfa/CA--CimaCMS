@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Components\Forms\CreatePageForm;
@@ -21,17 +23,16 @@ class PageController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(CreatePageForm $createPageForm)
-    {   bdump($createPageForm->get());
+    {
+        bdump($createPageForm->get());
+
         return view('admin.page.create', ['createPageForm' => $createPageForm]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
-    {
-        
-    }
+    public function store(StoreRequest $request) {}
 
     /**
      * Display the specified resource.

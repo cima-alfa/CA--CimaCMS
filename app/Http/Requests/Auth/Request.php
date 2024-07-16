@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Support\Str;
 use App\Http\Requests\FormRequest;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Str;
 
 class Request extends FormRequest
 {
-    public function __construct(private UserRepository $userRepository)
-    {}
+    public function __construct(private UserRepository $userRepository) {}
 
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +26,7 @@ class Request extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'login' => Str::lower($this->login)
+            'login' => Str::lower($this->login),
         ]);
     }
 
@@ -39,10 +40,10 @@ class Request extends FormRequest
             $this->login,
             ['email']
         );
-        
+
         $this->merge([
             'email' => $user?->email,
-            'remember' => (bool) $this->remember
+            'remember' => (bool) $this->remember,
         ]);
     }
 

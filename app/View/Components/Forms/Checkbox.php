@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\Forms;
 
 use Closure;
@@ -17,12 +19,11 @@ class Checkbox extends Component
         public ?string $id = null,
         public string $value = 'on',
         public bool $checked = false
-    )
-    {
-        $this->id = $id ?? 
-            str()->random() . '-' . 
-            preg_replace_callback('/[^a-zA-Z0-9_-]/', fn() => str()->random(1), $name);
-            
+    ) {
+        $this->id = $id ??
+            str()->random().'-'.
+            preg_replace_callback('/[^a-zA-Z0-9_-]/', fn () => str()->random(1), $name);
+
         $this->value = old($name) ?? $value;
         $this->checked = (bool) (old($name) ?? $checked);
     }

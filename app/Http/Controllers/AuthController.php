@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\Auth\Request as AuthRequest;
-use Illuminate\Contracts\View\View;
-use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\User\StoreRequest;
+use App\Repositories\UserRepository;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function __construct(private UserRepository $userRepository)
-    {}
+    public function __construct(private UserRepository $userRepository) {}
 
     /**
      * Show the form for creating a new user.
@@ -48,7 +49,7 @@ class AuthController extends Controller
     {
         $credentials = [
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
         ];
 
         if (Auth::attempt($credentials, $request->remember)) {
@@ -56,9 +57,9 @@ class AuthController extends Controller
 
             return redirect()->intended(route('admin.dashboard', absolute: false));
         }
-        
+
         return back()->withErrors([
-            'authError' => 'The provided credentials do not match our records.'
+            'authError' => 'The provided credentials do not match our records.',
         ])->withInput($request->all(['login', 'remember']));
     }
 

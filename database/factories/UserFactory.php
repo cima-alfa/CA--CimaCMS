@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -36,7 +38,7 @@ class UserFactory extends Factory
             'name_second' => fake()->optional()->firstName($gender),
             'name_last' => fake()->optional()->lastName($gender),
             'phone' => $phone ? trim(str_replace('+34', '', $phone)) : null,
-            'phone_prefix' => $phone ? (str_contains($phone, '+34') ? '+34' : null) : null
+            'phone_prefix' => $phone ? (str_contains($phone, '+34') ? '+34' : null) : null,
         ];
     }
 

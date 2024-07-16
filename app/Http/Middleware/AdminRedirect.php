@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -10,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Redirect admin "foo" route to the closest existing route or to dashboard if non is found. 
+ * Redirect admin "foo" route to the closest existing route or to dashboard if non is found.
  * If no user is authenticated, redirect to login.
  */
 class AdminRedirect
@@ -25,12 +27,13 @@ class AdminRedirect
         return $this->handleRedirect($request) ?? $next($request);
     }
 
-    private function handleRedirect(Request $request): ?RedirectResponse {
+    private function handleRedirect(Request $request): ?RedirectResponse
+    {
         if (Route::currentRouteName() !== 'admin.') {
             return null;
         }
-        
-        if (!Auth::check()) {
+
+        if (! Auth::check()) {
             return redirect()->route('admin.auth.login');
         }
 
@@ -44,7 +47,7 @@ class AdminRedirect
         }
 
         $routes = Route::getRoutes();
-        
+
         while ($uri) {
             $routeMatches = $routes->match(
                 $request->create("{$routeCurrent->getPrefix()}/{$uri[0]}")
@@ -52,7 +55,7 @@ class AdminRedirect
 
             if ($routeMatches->getName() === 'admin.') {
                 $uri = preg_split($uriRegex, $uri[0]);
-                
+
                 if (count($uri) <= 1) {
                     $uri = null;
                 }
@@ -63,7 +66,7 @@ class AdminRedirect
             $redirect = $routeMatches->getName();
             $uri = null;
         }
-        
+
         return redirect()->route($redirect);
     }
 }

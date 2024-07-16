@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\Forms;
 
 use Closure;
@@ -17,9 +19,8 @@ class Input extends Component
         public string $type = 'text',
         public ?string $id = null,
         public ?string $value = null
-    )
-    {
-        $this->id = $id ?? str()->random() . "-{$name}";
+    ) {
+        $this->id = $id ?? str()->random()."-{$name}";
         $this->value = old($name) ?? $value;
     }
 

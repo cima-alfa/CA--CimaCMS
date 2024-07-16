@@ -1,6 +1,6 @@
 <?php
 
-use Barryvdh\Debugbar\Facades\Debugbar;
+declare(strict_types=1);
 
 if (! function_exists('base_url')) {
     /**

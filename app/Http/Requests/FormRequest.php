@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Contracts\Form;
@@ -15,19 +17,21 @@ abstract class FormRequest extends HttpFormRequest
 
     /**
      * Set the form definition
-     * 
-     * @param App\Contracts\Form|null $form Form definition instance
+     *
+     * @param  App\Contracts\Form|null  $form  Form definition instance
      */
-    protected function setForm(?Form $form): void {
+    protected function setForm(?Form $form): void
+    {
         $this->form = $form;
     }
 
     /**
      * Get the form definition
-     * 
+     *
      * @return App\Contracts\Form|null Form definition instance
      */
-    protected function getForm(): ?Form {
+    protected function getForm(): ?Form
+    {
         return $this->form;
     }
 
@@ -55,7 +59,7 @@ abstract class FormRequest extends HttpFormRequest
             'username' => 'Username',
             'email' => 'E-Mail',
             'password' => 'Password',
-            'login' => 'E-Mail or Username'
+            'login' => 'E-Mail or Username',
         ];
     }
 
@@ -76,7 +80,7 @@ abstract class FormRequest extends HttpFormRequest
             'password.mixed' => ':attribute must contain at least one uppercase and one lowercase letter.',
             'password.numbers' => ':attribute must contain at least one number.',
             'password.symbols' => ':attribute must contain at least one symbol.',
-            'unique' => ':attribute has already been taken.'
+            'unique' => ':attribute has already been taken.',
         ];
     }
 }

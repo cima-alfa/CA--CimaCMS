@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\User;
 
-use Illuminate\Support\Str;
 use App\Http\Requests\FormRequest;
-use Illuminate\Validation\Validator;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator as Rule;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Validator;
 
 class StoreRequest extends FormRequest
 {

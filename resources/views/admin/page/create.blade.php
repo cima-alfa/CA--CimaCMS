@@ -15,7 +15,7 @@
         <x-forms.select label="select" name="select" :options="$options" />
 
         <x-forms.checkbox label="Accept" name="check[]" value="test" checked />
-        {{-- <x-forms.checkbox label="Accept" name="check[]" /> --}}
+        <x-forms.checkbox label="Accept" name="check[]" />
 
         <input type="submit" class="btn">
     </x-forms.form>

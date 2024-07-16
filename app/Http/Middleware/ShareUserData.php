@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\Services\CurrentUserData;
@@ -10,8 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ShareUserData
 {
-    public function __construct(private ?CurrentUserData $currentUserData)
-    {}
+    public function __construct(private ?CurrentUserData $currentUserData) {}
 
     /**
      * Handle an incoming request.

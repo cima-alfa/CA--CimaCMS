@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components\Forms\Controls;
 
 /**
@@ -8,51 +10,75 @@ namespace App\Components\Forms\Controls;
  * @property ?string $action
  * @property bool $upload
  */
-
 final class Form
 {
+    use Fields;
+
     private string $method = 'GET';
+
     private bool $csrf = false;
+
     private ?string $action = null;
+
     private bool $upload = false;
 
-    public function setMethod(string $method): static {
+    public function setMethod(string $method): static
+    {
         $this->method = strtoupper($method);
 
         $methodsPost = [
             'POST',
             'PUT',
             'PATCH',
-            'DELETE'
+            'DELETE',
         ];
 
         if (in_array($this->method, $methodsPost)) {
             $this->setCsrf(true);
         }
-        
+
         return $this;
     }
 
-    public function setCsrf(bool $csrf = true): static {
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    public function setCsrf(bool $csrf = true): static
+    {
         $this->csrf = $csrf;
 
         return $this;
     }
 
-    public function setAction(?string $url): static {
+    public function getCsrfMethod(): bool
+    {
+        return $this->csrf;
+    }
+
+    public function setAction(?string $url): static
+    {
         $this->action = $url;
-        
+
         return $this;
     }
 
-    private function getAction(): string {
+    private function getAction(): string
+    {
         return $this->action ? $this->action : url()->current();
     }
 
-    public function setUpload(bool $upload = true): static {
+    public function setUpload(bool $upload = true): static
+    {
         $this->upload = $upload;
 
         return $this;
+    }
+
+    public function getUpload(): bool
+    {
+        return $this->upload;
     }
 
     public function __get(string $name)

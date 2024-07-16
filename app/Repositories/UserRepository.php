@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
-use App\Repositories\Repository;
 use App\Models\User;
 
-class UserRepository extends Repository 
+class UserRepository extends Repository
 {
-    public function model(): User {
+    public function model(): User
+    {
         return new User;
     }
 }

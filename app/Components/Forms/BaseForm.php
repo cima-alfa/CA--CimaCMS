@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components\Forms;
 
 use App\Components\Forms\Controls\Form;
@@ -14,7 +16,8 @@ abstract class BaseForm implements ContractsForm
 
     abstract protected function create(Form $form): void;
 
-    public function get(): Form {
+    public function get(): Form
+    {
         return $this->form;
     }
 }

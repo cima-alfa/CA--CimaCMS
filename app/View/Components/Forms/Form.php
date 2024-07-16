@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\Forms;
 
 use App\Contracts\Form as ContractsForm;
 use Closure;
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 class Form extends Component
 {
@@ -15,15 +17,14 @@ class Form extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $method = "GET",
+        public string $method = 'GET',
         public bool $csrf = false,
         public ?string $action = null,
         public ?string $route = null,
         public bool $upload = false,
         ?ContractsForm $form = null
-    )
-    {
-        if (!$form) {
+    ) {
+        if (! $form) {
             $this->setAction();
             $this->setMethod();
 
@@ -40,19 +41,20 @@ class Form extends Component
         $this->setMethod();
     }
 
-    private function setMethod(): void {
+    private function setMethod(): void
+    {
         $this->method = strtoupper($this->method);
 
         $methodsGet = [
-            'HEAD'
+            'HEAD',
         ];
 
         $methodsPost = [
             'PUT',
             'PATCH',
-            'DELETE'
+            'DELETE',
         ];
-        
+
         if (in_array($this->method, $methodsGet)) {
             $this->methodSpoof = $this->method;
             $this->method = 'GET';
@@ -68,11 +70,12 @@ class Form extends Component
         }
     }
 
-    private function setAction(): void {
+    private function setAction(): void
+    {
         if ($this->route) {
             $route = explode(',', trim($this->route, ','));
             $route = $parameters = array_map(fn ($value) => trim($value), $route);
-            
+
             unset($parameters[0]);
 
             $parametersNormalized = [];
@@ -87,7 +90,7 @@ class Form extends Component
             $this->action = route($route[0], $parametersNormalized);
         }
 
-        if (!$this->action) {
+        if (! $this->action) {
             $this->action = url()->current();
         }
     }
